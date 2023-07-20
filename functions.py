@@ -1,5 +1,5 @@
 from pvrecorder import PvRecorder
-import wave, struct
+import struct
 import whisper
 import datetime
 import torch

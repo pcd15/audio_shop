@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <title>Flask App</title>
+</head>
+<body>
+    <h1>Welcome to My Flask App</h1>
+    <div class="download">
+        <h1>Download the file</h1>
+        <a class="btn btn-success" href="{{url_for('download')}}">Download</a>
+    </div>
+    <div class="submit">
+        <form method="POST" action="{{ url_for('submit')}}" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <select name="number">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="record">
+        <h1>{{record}}</h1>
+        <a class="btn btn-success" href="{{url_for('start')}}">Start</a>
+        <a class="btn btn-success" href="{{url_for('stop')}}">Stop</a>
+    </div>
+</body>
+</html>

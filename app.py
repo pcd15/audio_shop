@@ -78,6 +78,7 @@ def convert():
             path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(path)
             transcribe(path, num_speakers)
+            os.remove(path)
             return send_file('transcript.txt', as_attachment=True)
     return redirect(request.url)
 
@@ -108,6 +109,7 @@ def update():
                     value = request.form[str(num)]
                     dict[key] = value
                 replace(path, dict)
+                os.remove(path)
                 return send_file('transcript_redux.txt', as_attachment=True)
         return redirect(request.url)
 

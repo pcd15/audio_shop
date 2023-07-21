@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
     <title>Audio Shop</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Creepster&family=Lilita+One&family=Mynerve&family=Reem+Kufi+Fun&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="header">
@@ -12,12 +17,18 @@
         <div class="title-container"><h1 class="title">The One-Stop Audio Shop</h1></div>
     </div>
     <div class="record">
-        <form action="{{ url_for('start')}}" method="POST">
-            <button name="start_btn" type="submit"><div class="triangle"></div></button>
-        </form>
-        <form action="{{ url_for('stop')}}" method="POST">
-            <button name="stop_btn" type="submit"><div class="square"></div></button>
-        </form>
+        <div class="speech-bubble-left">
+            <p class="light bubble-text">record some audio!</p>
+            <div class="speech-bubble-arrow-left"></div>
+        </div>
+        <div class="btn_container">
+            <form action="{{ url_for('start')}}" method="POST">
+                <button name="start_btn" type="submit" class="start record_btn"><div class="triangle"></div></button>
+            </form>
+            <form action="{{ url_for('stop')}}" method="POST">
+                <button name="stop_btn" type="submit" class="stop record_btn"><div class="square"></div></button>
+            </form>
+        </div>
     </div>
     <div class="transcribe">
         <form method="POST" action="{{ url_for('convert')}}" enctype="multipart/form-data">
@@ -36,6 +47,10 @@
             </select>
             <button type="submit">Transcribe</button>
         </form>
+        <div class="speech-bubble-right">
+            <p class="dark bubble-text">upload an audio file to be <span class="scare">transcribed</span></p>
+            <div class="speech-bubble-arrow-right"></div>
+        </div>
     </div>
     <div class="replace">
         <form method="POST" action="{{ url_for('get_speakers')}}" enctype="multipart/form-data">
@@ -64,11 +79,6 @@
                 <button type="submit">Replace</button>
             </form>            
         {% endif %}
-    </div>
-    <div class="speech-bubble">
-        <p><strong>Demo speech bubble</strong></p>
-        <p>This is CSS speech bubble with borders and drop shadow.</p>
-        <div class="speech-bubble-arrow"></div>
     </div>
 </body>
 </html>

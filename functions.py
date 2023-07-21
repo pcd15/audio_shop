@@ -33,9 +33,6 @@ def record():
 
 #####
 
-path = "audio.wav"
-num_speakers = 2
-
 def transcribe(path, num_speakers):
         
     def segment_embedding(segment):
@@ -85,10 +82,8 @@ def transcribe(path, num_speakers):
 
 #####
 
-dict = {"SPEAKER_1": "Macklemore", "SPEAKER_2": "Kesha"}
-
-def replace(dict):
-    with open(r'transcript.txt', 'r') as file:
+def replace(path, dict):
+    with open(path, 'r') as file:
         data = file.read()  
 
     for key in dict:
@@ -96,11 +91,17 @@ def replace(dict):
         replace = dict[key]
         data = data.replace(search, replace)
 
-    with open(r'transcript_redux.txt', 'w') as file:
+    with open('transcript_redux.txt', 'w') as file:
         file.write(data)
 
 #####
 
 # record()
+
+# path = "audio.wav"
+# num_speakers = 2
 # transcribe(path, num_speakers)
-# replace(dict)
+
+# path = 'transcript.txt'
+# dict = {"SPEAKER_1": "Macklemore", "SPEAKER_2": "Kesha"}
+# replace(path, dict)

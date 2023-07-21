@@ -1,20 +1,11 @@
-from flask import Flask, render_template, send_file, request, redirect, url_for, jsonify
-from pvrecorder import PvRecorder
-import wave, struct
-from threading import Thread
+from flask import Flask, render_template, send_file, request, redirect
 from werkzeug.utils import secure_filename
-import os
-from pvrecorder import PvRecorder
-import whisper
-import datetime
-import torch
-from pyannote.audio.pipelines.speaker_verification import PretrainedSpeakerEmbedding
-from pyannote.audio import Audio
-from pyannote.core import Segment
-import contextlib
-from sklearn.cluster import AgglomerativeClustering
-import numpy as np
 from functions import transcribe, replace
+from pvrecorder import PvRecorder
+from threading import Thread
+import struct
+import wave
+import os
 
 UPLOAD_FOLDER = os.getcwd()
 ALLOWED_EXTENSIONS = {'wav', 'txt'}
@@ -24,11 +15,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 audio = []
 flag = True
+not_started = True
 num_speakers = 1
-
-@app.route('/')
-def home():
-    return render_template('index.html', num_speakers="")
 
 def record():
     global audio
@@ -41,28 +29,39 @@ def record():
     recorder.stop()
     recorder.delete()
 
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/')
+def home():
+    return render_template('index.html', num_speakers="")
+
 @app.route('/start', methods=('GET','POST'))
 def start():
-    thread = Thread(target=record)
-    thread.start()
+    global not_started
+    if not_started:
+        not_started = False
+        thread = Thread(target=record)
+        thread.start()
     return render_template('index.html', num_speakers="")
 
 @app.route('/stop', methods=('GET','POST'))
 def stop():
     global audio
     global flag
-    flag = False
-    path = 'audio.wav'
-    with wave.open(path, 'w') as file:
-        file.setparams((1, 2, 16000, 512, "NONE", "NONE"))
-        file.writeframes(struct.pack("h" * len(audio), *audio))
-    flag = True
-    audio = []
-    return send_file(path, as_attachment=True)
-
-def allowed_file(filename):
-    return '.' in filename and \
-        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    global not_started
+    if not not_started:
+        flag = False
+        path = 'audio.wav'
+        with wave.open(path, 'w') as file:
+            file.setparams((1, 2, 16000, 512, "NONE", "NONE"))
+            file.writeframes(struct.pack("h" * len(audio), *audio))
+        flag = True
+        not_started = True
+        audio = []
+        return send_file(path, as_attachment=True)
+    return render_template('index.html', num_speakers="")
 
 @app.route('/convert', methods=['GET', 'POST'])
 def convert():

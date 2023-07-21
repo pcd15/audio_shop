@@ -7,11 +7,17 @@
     <title>Audio Shop</title>
 </head>
 <body>
-    <h1>Audio Shop</h1>
+    <div class="header">
+        <a href="https://energyhardware.com/"><img src="{{ url_for('static', filename= 'img/eh_logo.png') }}" alt="Energy Hardware company logo" class="logo"></a>
+        <div class="title-container"><h1 class="title">The One-Stop Audio Shop</h1></div>
+    </div>
     <div class="record">
-        <h1>{{record}}</h1>
-        <a class="btn btn-success" href="{{url_for('start')}}">Start</a>
-        <a class="btn btn-success" href="{{url_for('stop')}}">Stop</a>
+        <form action="{{ url_for('start')}}" method="POST">
+            <button name="start_btn" type="submit"><div class="triangle"></div></button>
+        </form>
+        <form action="{{ url_for('stop')}}" method="POST">
+            <button name="stop_btn" type="submit"><div class="square"></div></button>
+        </form>
     </div>
     <div class="transcribe">
         <form method="POST" action="{{ url_for('convert')}}" enctype="multipart/form-data">
@@ -28,7 +34,7 @@
                 <option value="9">9</option>
                 <option value="10">10</option>
             </select>
-            <button type="submit">Submit</button>
+            <button type="submit">Transcribe</button>
         </form>
     </div>
     <div class="replace">
@@ -53,11 +59,16 @@
                 <input type="file" name="file">
                 {% for num in range(1, num_speakers + 1) %}
                     {% set tag = 'SPEAKER_' + num|string %}
-                    <input name={{ num }} value= {{ tag }}>
+                    <input name={{ num }} placeholder={{ tag }}>
                 {% endfor %}
-                <button type="submit">Submit</button>
+                <button type="submit">Replace</button>
             </form>            
         {% endif %}
+    </div>
+    <div class="speech-bubble">
+        <p><strong>Demo speech bubble</strong></p>
+        <p>This is CSS speech bubble with borders and drop shadow.</p>
+        <div class="speech-bubble-arrow"></div>
     </div>
 </body>
 </html>

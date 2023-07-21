@@ -1,6 +1,135 @@
-h1 {
-    border: 2px #eee solid;
-    color: brown;
+* {
+    font-family: 'Courier New', monospace;
+    margin: 0px;
+}
+
+/* header section */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+    margin: 0px;
+    background-color: #5f99af;
+}
+
+.logo {
+    width: 200px;
+    height: auto;
+    background-color: #003e52;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.title-container {
+    background-color: #003e52;
+    padding: 12px;
+    border-radius: 8px;
+    margin: auto;
+}
+
+.title {
+    color: white;
+    font-size: 60px;
+    padding: 20px;
     text-align: center;
-    padding: 10px;
+}
+
+/* end of header section */
+
+
+
+/* record section */
+
+.record {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    gap: 40px;
+    margin: 0px;
+    background-color: #003e52;
+}
+
+/* start button color: #00B452 */
+
+.triangle {
+	width: 0;
+	height: 0;
+	border-top: 25px solid transparent;
+	border-left: 50px solid black;
+	border-bottom: 25px solid transparent;
+}
+
+/* stop button color: #B43E52 */
+.square {
+    height: 50px;
+    width: 50px;
+    background-color: black;
+  }
+
+/* end of record section */
+
+
+
+/* transcribe section */
+
+
+
+/* end of transcribe section */
+
+
+
+/* replace section */
+
+
+
+/* end of replace section */
+
+
+
+.speech-bubble {
+    background: #efefef;
+    border: 1px solid #a7a7a7;
+    border-radius: 8px;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+    font-size: 1.2rem;
+    line-height: 1.3;
+    margin: 0 auto 40px;
+    max-width: 400px;
+    padding: 15px;
+    position: relative;
+  
+    p {
+        margin-bottom: 10px;
+        :last-of-type {
+            margin-bottom: 0;
+        }
+    }
+}
+  
+.speech-bubble-arrow {
+    border-left: 21px solid transparent;
+    border-top: 20px solid rgba(0, 0, 0, 0.2);
+    bottom: -25px;
+    position: absolute;
+    right: 15px;
+
+    &::before {
+        border-left: 23px solid transparent;
+        border-top: 23px solid #a7a7a7;
+        bottom: 2px;
+        content: "";
+        position: absolute;
+        right: 5px;
+    }
+
+    &::after {
+        border-left: 21px solid transparent;
+        border-top: 21px solid #efefef;
+        bottom: 4px;
+        content: "";
+        position: absolute;
+        right: 6px;
+    }
 }

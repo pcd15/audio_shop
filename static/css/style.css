@@ -1,152 +1,338 @@
+/* overall stuff */
+
 * {
     font-family: 'Courier New', monospace;
     font-weight: bold;
     margin: 0px;
+    font-family: 'Mynerve', sans-serif;
     /* font-family: 'Angkor', cursive; */
     /* font-family: 'Creepster', cursive; */
     /* font-family: 'Lilita One', cursive; */
     /* font-family: 'Reem Kufi Fun', sans-serif; */
-    font-family: 'Mynerve', cursive;
-}
-
-/* background-color: #e5e7eb; */
-
-/* header section */
-
-.header {
+  }
+  
+  body {
+    background-color: #5f99af;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0px;
+  }
+  
+  .mini-container {
+    border: 6px solid #003e52;
+    border-radius: 4px;
+    padding: 20px;
+    margin: 0px;
+  }
+  
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .btn-size {
+    font-size: 15px;
+  }
+  
+  ::file-selector-button {
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: bold;
+    color: #003e52;
+    background-color: rgb(225, 225, 225);
+    border: none;
+    border-radius: 12px;
+    width: 100px;
+    height: 50px;
+  }
+  
+  ::file-selector-button:hover {
+    background-color: #003e52;
+    color: rgb(225, 225, 225);
+  }
+  
+  .speakers {
+    border: none;
+    background-color: rgb(225, 225, 225);
+    border-radius: 4px;
+    margin-left: 8px;
+  }
+  
+  .shift {
+    margin-right: 200px;
+  }
+  
+  #other-font {
+    font-family: 'Reem Kufi Fun', sans-serif;
+  }
+  
+  #drop-font {
+    font-family: 'Darumadrop One', cursive;
+  }
+  
+  .light {
+    color: #5f99af;
+  }
+  
+  .dark {
+    color: #003e52;
+  }
+  
+  /* end of overall stuff */
+  
+  
+  /* header section */
+  
+  .header {
     display: flex;
     justify-content: space-between;
     padding: 20px;
     gap: 20px;
     margin: 0px;
-    background-color: #5f99af;
-}
-
-.logo {
+    background-color: rgb(225, 225, 225);
+  }
+  
+  .logo {
     width: 150px;
     height: auto;
     background-color: #003e52;
     padding: 20px;
     border-radius: 8px;
-}
-
-.title-container {
+  }
+  
+  .title-container {
     background-color: #003e52;
     padding: 20px;
     border-radius: 8px;
     margin: auto;
-}
-
-.title {
+  }
+  
+  .title {
     color: white;
     font-size: 48px;
     padding: 12px;
     text-align: center;
-}
-
-/* end of header section */
-
-
-/* record section */
-
-.record {
+  }
+  
+  /* end of header section */
+  
+  
+  /* record section */
+  
+  .record {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    gap: 150px;
-    height: 200px;
-    background-color: #003e52;
-}
-
-.btn_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 60px;
+    gap: 40px;
     margin: 0px;
-}
-
-.record_btn {
+    margin-top: 20px;
+    margin-right: 120px;
+  }
+  
+  .record-btn {
     width: 100px;
     height: auto;
     border-radius: 12px;
     border: none;
-}
-
-.start {
+  }
+  
+  .start {
     background-color: lightgreen;
-}
-
-.stop{
+  }
+  
+  .stop{
     background-color: lightcoral;
-}
-
-.start:hover {
-    background-color: green;
-}
-
-.stop:hover {
+  }
+  
+  .start:hover {
+    background-color: rgb(23, 186, 23);
+  }
+  
+  .stop:hover {
     background-color: red;
-}
-
-.triangle {
-	width: 0;
-	height: 0;
-	border-top: 15px solid transparent;
-	border-left: 30px solid white;
-	border-bottom: 15px solid transparent;
+  }
+  
+  .margin {
+    margin: 20px;
+  }
+  
+  .triangle {
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-left: 30px solid white;
+  border-bottom: 15px solid transparent;
     margin: auto;
     margin-top: 12px;
     margin-bottom: 12px;
-}
-
-.square {
+  }
+  
+  .square {
     height: 30px;
     width: 30px;
     background-color: white;
     margin: auto;
     margin-top: 12px;
     margin-bottom: 12px;
-}
-
-/* end of record section */
-
-
-/* transcribe section */
-
-.transcribe {
+  }
+  
+  .squiggly-one {
+    width: 150px;
+    height: auto;
+    transform: rotate(75deg);
+    align-self: flex-end;
+  }
+  
+  /* end of record section */
+  
+  
+  /* transcribe section */
+  
+  .transcribe {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
+    margin: -20px;
+  }
+  
+  .transcribe-container {
+    align-self: flex-end;
+    margin: 20px 0 40px 0;
+  }
+  
+  .transcribe-btn {
+    width: 100px;
+    height: 50px;
+    border-radius: 12px;
+    border: none;
+    margin: 20px;
+    background-color: rgb(225, 225, 225);
+  }
+  
+  .transcribe-btn:hover {
+    background-color: #003e52;
+    color: rgb(225, 225, 225);
+  }
+  
+  .speakers:hover {
+    background-color: #003e52;
+    color: rgb(225, 225, 225);
+  }
+  
+  .squiggly-two {
+    width: 150px;
+    height: auto;
+    transform: rotate(165deg);
+    align-self: flex-end;
+    margin-right: 475px;
+    margin-bottom: 30px;
+  }
+  
+  .scare {
+    font-family: 'Creepster', cursive;
+    font-size: 40px;
+  }
+  
+  .margin-right {
+    margin-right: -50px;
+  }
+  
+  /* end of transcribe section */
+  
+  
+  /* replace section */
+  
+  .replace {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 120px;
-    height: 250px;
-    background-color: #5f99af;
-}
-
-::file-selector-button {
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
+    padding: 20px;
+    gap: 150px;
+  }
+  
+  .speaker-list {
+    display: flex;
+    flex-wrap: wrap;
+    column-count: 2;
+    width: 336px;
+    gap: 5px;
+    margin: auto;
+  }
+  
+  .speaker-field {
+    background-color: rgb(225, 225, 225);
     border: none;
-    border-radius: 4px;
-}
-
-/* end of transcribe section */
-
-
-/* replace section */
-
-/* end of replace section */
-
-
-/* footer section */
-
-/* end of footer section */
-
-
-/* speech-bubble section */
-
-.speech-bubble-left {
+    border-radius: 2px;
+  }
+  
+  ::placeholder {
+    color: #003e52;
+  }
+  
+  .replace-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    margin-left: 100px;
+  }
+  
+  .bottom {
+    margin: auto;
+    padding: 10px;
+  }
+  
+  .ghost-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .file-margin {
+    margin-right: -120px;
+  }
+  
+  .replace-btn {
+    width: 100px;
+    height: 50px;
+    border-radius: 12px;
+    border: none;
+    margin-bottom: 20px;
+    background-color: rgb(225, 225, 225);
+  }
+  
+  .replace-btn:hover {
+    background-color: #003e52;
+    color: rgb(225, 225, 225);
+  }
+  
+  /* end of replace section */
+  
+  
+  /* footer section */
+  
+  .footer {
+    text-align: center;
+    font-size: 18fpx;
+    padding: 15px;
+    background-color: rgb(225, 225, 225);
+  }
+  
+  /* end of footer section */
+  
+  
+  /* speech-bubble section */
+  
+  .speech-bubble-left {
     display: inline-block;
     background: #efefef;
     border: 1px solid #a7a7a7;
@@ -163,9 +349,9 @@
             margin-bottom: 0;
         }
     }
-}
-
-.speech-bubble-arrow-left {
+  }
+  
+  .speech-bubble-arrow-left {
     border-right: 21px solid transparent;
     border-top: 20px solid rgba(0, 0, 0, 0.2);
     bottom: -25px;
@@ -187,9 +373,9 @@
         position: absolute;
         left: 6px;
     }
-}
-
-.speech-bubble-right {
+  }
+  
+  .speech-bubble-right {
     display: inline-block;
     background: #efefef;
     border: 1px solid #a7a7a7;
@@ -206,9 +392,9 @@
             margin-bottom: 0;
         }
     }
-}
-
-.speech-bubble-arrow-right {
+  }
+  
+  .speech-bubble-arrow-right {
     border-left: 21px solid transparent;
     border-top: 20px solid rgba(0, 0, 0, 0.2);
     bottom: -25px;
@@ -230,24 +416,16 @@
         position: absolute;
         right: 6px;
     }
-}
-
-.bubble-text {
+  }
+  
+  .bubble-text {
     font-size: 30px;
     text-align: center;
-}
-
-.dark {
-    color: #003e52;
-}
-
-.light {
-    color: #5f99af;
-}
-
-/* end of speech-bubble section */
-
-.scare {
-    font-family: 'Creepster', cursive;
-    font-size: 40px;
-}
+  }
+  
+  .center-bubble {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* end of speech-bubble section */

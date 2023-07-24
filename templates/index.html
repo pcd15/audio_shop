@@ -7,78 +7,120 @@
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Creepster&family=Lilita+One&family=Mynerve&family=Reem+Kufi+Fun&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Creepster&family=Lilita+One&family=Mynerve&family=Reem+Kufi+Fun&family=Sriracha&family=Darumadrop+One&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="header">
         <a href="https://energyhardware.com/"><img src="{{ url_for('static', filename= 'img/eh_logo.png') }}" alt="Energy Hardware company logo" class="logo"></a>
         <div class="title-container"><h1 class="title">The One-Stop Audio Shop</h1></div>
     </div>
-    <div class="record">
-        <div class="speech-bubble-left">
-            <p class="light bubble-text">Record some audio!</p>
-            <div class="speech-bubble-arrow-left"></div>
-        </div>
-        <div class="btn_container">
-            <form action="{{ url_for('start')}}" method="POST">
-                <button name="start_btn" type="submit" class="start record_btn"><div class="triangle"></div></button>
-            </form>
-            <form action="{{ url_for('stop')}}" method="POST">
-                <button name="stop_btn" type="submit" class="stop record_btn"><div class="square"></div></button>
-            </form>
+    <div class="shift">
+        <div class="container">
+            <div class="record">
+                <div class="mini-container">
+                    <div class="center-bubble">
+                        <div class="speech-bubble-left">
+                            <p class="dark bubble-text">Record some audio!</p>
+                            <div class="speech-bubble-arrow-left"></div>
+                        </div>
+                    </div>
+                    <div class="btn-container">
+                        <form action="{{ url_for('start')}}" method="POST">
+                            <button name="start_btn" type="submit" class="start record-btn margin"><div class="triangle"></div></button>
+                        </form>
+                        <form action="{{ url_for('stop')}}" method="POST">
+                            <button name="stop_btn" type="submit" class="stop record-btn margin"><div class="square"></div></button>
+                        </form>
+                    </div>
+                </div>
+                <img src="{{ url_for('static', filename= 'img/squiggly_1.svg') }}" alt="squiggly line pointing to transcription step" class="squiggly-one">
+            </div>
+            <div class="transcribe">
+                <div class="mini-container transcribe-container">
+                    <form method="POST" action="{{ url_for('convert')}}" enctype="multipart/form-data">
+                        <div class="btn-container">
+                            <div>
+                                <input type="file" name="file" class="dark margin-right btn-size" id="other-font">
+                            </div>
+                            <div>
+                                <span id="other-font" class="dark btn-size">Number of Speakers:</span>
+                                <select name="number" class="dark speakers btn-size" id="other-font">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                                <button type="submit" class="dark transcribe-btn btn-size" id="other-font">Transcribe</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="center-bubble">
+                        <div class="speech-bubble-right">
+                            <p class="dark bubble-text">Upload an audio file to be <span class="scare">TRANSCRIBED</span></p>
+                            <div class="speech-bubble-arrow-right"></div>
+                        </div>
+                    </div>
+                </div>
+                <img src="{{ url_for('static', filename= 'img/squiggly_1.svg') }}" alt="squiggly line pointing to transcription step" class="squiggly-two">
+            </div>
+            <div class="replace">
+                <div class="mini-container replace-container">
+                    <div>
+                        <div class="center-bubble">
+                            <div class="speech-bubble-left">
+                                <p class="dark bubble-text">Replace those <span id="drop-font">pesky</span> speaker tags with real names</p>
+                                <div class="speech-bubble-arrow-left"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <form method="POST" action="{{ url_for('get_speakers')}}" enctype="multipart/form-data">
+                            <span id="other-font" class="dark btn-size">Number of Speakers:</span>
+                            <select name="number" class="dark speakers btn-size" id="other-font">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                            <button type="submit" class="dark transcribe-btn btn-size" id="other-font">Submit</button>
+                        </form>
+                    </div>
+                    <div class="bottom">
+                        {% if num_speakers != "" %}
+                            <form method="POST" action="{{ url_for('update')}}" enctype="multipart/form-data" class="ghost-container">
+                                <div>
+                                    <input type="file" name="file" class="dark btn-size file-margin" id="other-font">
+                                </div>
+                                <div class="speaker-list">
+                                    {% for num in range(1, num_speakers + 1) %}
+                                        {% set tag = 'SPEAKER_' + num|string %}
+                                        <input name={{ num }} placeholder={{ tag }} class="speaker-field">
+                                    {% endfor %}
+                                </div>
+                                <div>
+                                    <button type="submit" class="dark replace-btn btn-size" id="other-font">Replace</button>
+                                </div>
+                            </form>            
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="transcribe">
-        <form method="POST" action="{{ url_for('convert')}}" enctype="multipart/form-data">
-            <input type="file" name="file">
-            <select name="number">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
-            <button type="submit">Transcribe</button>
-        </form>
-        <div class="speech-bubble-right">
-            <p class="dark bubble-text">Upload an audio file to be <span class="scare">transcribed</span></p>
-            <div class="speech-bubble-arrow-right"></div>
-        </div>
-    </div>
-    <div class="replace">
-        <form method="POST" action="{{ url_for('get_speakers')}}" enctype="multipart/form-data">
-            <select name="number">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
-            <button type="submit">Submit</button>
-        </form>
-        {% if num_speakers != "" %}
-            <h1>Speakers</h1>
-            <form method="POST" action="{{ url_for('update')}}" enctype="multipart/form-data">
-                <input type="file" name="file">
-                {% for num in range(1, num_speakers + 1) %}
-                    {% set tag = 'SPEAKER_' + num|string %}
-                    <input name={{ num }} placeholder={{ tag }}>
-                {% endfor %}
-                <button type="submit">Replace</button>
-            </form>            
-        {% endif %}
+    <div class="dark footer">
+        <p><span>&#169; </span>Energy Hardware 2023</p>
     </div>
 </body>
 </html>

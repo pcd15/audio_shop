@@ -1,7 +1,7 @@
 # The One-Stop Audio Shop
 ###### By Paul Dilly | In collaboration with [Energy Hardware](https://energyhardware.com/)
 
-Built upon Python's flask framework, this project enables you to record and transcribe audio with only a few clicks--a perfect solution to the hassle of note-taking during meetings and lectures. You can view and use this free resource @ XXX.com.
+Built upon Python's flask framework, this project enables you to record and transcribe audio with only a few clicks--a perfect solution to the hassle of note-taking during meetings and lectures. You can view and use this free resource @ ABC.com.
 
 ## Steps
 * Record audio, then download the resulting .wav file. You can skip this step if you already have an audio file you'd like to transcribe.

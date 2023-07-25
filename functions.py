@@ -33,7 +33,7 @@ def record():
 
 #####
 
-def transcribe(path, num_speakers):
+def transcribe(model, path, num_speakers):
         
     def segment_embedding(segment):
         start = segment["start"]
@@ -45,14 +45,12 @@ def transcribe(path, num_speakers):
     def time(secs):
         return datetime.timedelta(seconds=round(secs))
 
-    model_size = "large"
     embedding_model = PretrainedSpeakerEmbedding( 
         "speechbrain/spkrec-ecapa-voxceleb",
         device=torch.device("cpu")
     )
 
-    model = whisper.load_model(model_size)
-    result = model.transcribe(path)
+    result = model.transcribe(path, language="en", fp16=False, verbose=True)
     segments = result["segments"]
     with contextlib.closing(wave.open(path,'r')) as f:
         frames = f.getnframes()
@@ -82,6 +80,15 @@ def transcribe(path, num_speakers):
 
 #####
 
+def other_transcribe(model, path):
+    result = model.transcribe(path, language="en", fp16=False, verbose=True)
+    segments = result["segments"]
+    file = open("transcript.txt", "w")
+    for (i, segment) in enumerate(segments):
+        file.write(segment["text"][1:] + '\n\n')
+
+#####
+
 def replace(path, dict):
     with open(path, 'r') as file:
         data = file.read()  
@@ -100,7 +107,9 @@ def replace(path, dict):
 
 # path = "audio.wav"
 # num_speakers = 2
-# transcribe(path, num_speakers)
+# model = whisper.load_model("large")
+# transcribe(model, path, num_speakers)
+# other_transcribe(model, path)
 
 # path = 'transcript.txt'
 # dict = {"SPEAKER_1": "Macklemore", "SPEAKER_2": "Kesha"}

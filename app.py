@@ -1,8 +1,9 @@
 from flask import Flask, render_template, send_file, request, redirect
 from werkzeug.utils import secure_filename
-from functions import transcribe, replace
+from functions import transcribe, other_transcribe, replace
 from pvrecorder import PvRecorder
 from threading import Thread
+import whisper
 import struct
 import wave
 import os
@@ -77,8 +78,16 @@ def convert():
             filename = secure_filename(file.filename)
             path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(path)
-            transcribe(path, num_speakers)
+            model = whisper.load_model("large")
+            try:
+                transcribe(model, path, num_speakers)
+            except ValueError:
+                other_transcribe(model, path)
             os.remove(path)
+            try:
+                os.remove("audio.wav")
+            except OSError:
+                pass
             return send_file('transcript.txt', as_attachment=True)
     return redirect(request.url)
 
@@ -110,6 +119,10 @@ def update():
                     dict[key] = value
                 replace(path, dict)
                 os.remove(path)
+                try:
+                    os.remove("transcript.txt")
+                except OSError:
+                    pass
                 return send_file('transcript_redux.txt', as_attachment=True)
         return redirect(request.url)
 

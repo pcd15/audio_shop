@@ -1,6 +1,5 @@
 from pvrecorder import PvRecorder
 import struct
-import whisper
 import datetime
 import torch
 from pyannote.audio.pipelines.speaker_verification import PretrainedSpeakerEmbedding
@@ -100,17 +99,3 @@ def replace(path, dict):
 
     with open('transcript_redux.txt', 'w') as file:
         file.write(data)
-
-#####
-
-# record()
-
-# path = "audio.wav"
-# num_speakers = 2
-# model = whisper.load_model("large")
-# transcribe(model, path, num_speakers)
-# other_transcribe(model, path)
-
-# path = 'transcript.txt'
-# dict = {"SPEAKER_1": "Macklemore", "SPEAKER_2": "Kesha"}
-# replace(path, dict)

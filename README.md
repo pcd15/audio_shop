@@ -7,6 +7,7 @@ Built upon Python's flask framework, this project enables you to record and tran
 * Record audio, then download the resulting .wav file. You can skip this step if you already have an audio file you'd like to transcribe.
 * Upload a .wav file to be transcribed--this can take a few minutes--then download the resulting .txt file.
 * If you'd like to replace the speaker tags that come with the transcribed file, you can upload the file, along with the new names for each speaker, to replace the tags with the corresponding names you inputted.
+
 **Side Note:** If the audio you've transcribed in the above step doesn't contain speaker tags, it's because your file wasn't able to undergo the speaker-diarization process. To correct this, try recording a longer portion of audio and/or including more than one speaker in your file.
 
 ## Resources

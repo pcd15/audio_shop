@@ -18,5 +18,5 @@ You're now ready to go!
 **Side Note:** If the audio you've transcribed in the above step doesn't contain speaker tags, it's because your file wasn't able to undergo the speaker-diarization process. To correct this, try recording a longer portion of audio and/or including more than one speaker in your file.
 
 ## Resources
-* Transcription: The code this project uses to transcribe audio was adapted from this [resource](https://colab.research.google.com/drive/1V-Bt5Hm2kjaDb4P1RyMSswsDKyrzc2-3?usp=sharing) published by Dwarkesh Patel.
+* Transcription: The code this project uses to transcribe audio was adapted from this [resource](https://colab.research.google.com/drive/1V-Bt5Hm2kjaDb4P1RyMSswsDKyrzc2-3?usp=sharing), published by Dwarkesh Patel.
 * CSS: The speech bubbles featured on this project's webpage were inspired by this [blog post](https://auralinna.blog/post/2017/how-to-make-a-css-speech-bubble-with-borders-and-drop-shadow) by Tero Auralinna.

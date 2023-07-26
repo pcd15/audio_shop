@@ -6,7 +6,9 @@ Built upon Python's Flask framework, this project enables you to record and tran
 ## Setup
 * Clone this repository into your IDE of choice.
 * Install all dependencies by running ```pip install -r requirements.txt``` in the terminal.
-* Simply start the app with the ```flask run``` command, and you're ready to go!
+* Start the app with the ```flask run``` command.
+
+You're now ready to go!
 
 ## Steps
 * Record audio, then download the resulting .wav file. You can skip this step if you already have an audio file you'd like to transcribe.
